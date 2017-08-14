@@ -94,18 +94,14 @@ else()
 
 endif()
 
-configure_file("${PROJECT_SOURCE_DIR}/include/config.h.in"
-		"${CMAKE_CURRENT_BINARY_DIR}/include/config.h")
-
 include_directories("${CMAKE_CURRENT_BINARY_DIR}/include")
-add_definitions (-DHAVE_CONFIG_H)
 
 # Library
 add_library("uiohook" SHARED ${UIOHOOK_SRC})
 target_include_directories("uiohook" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_BINARY_DIR}/include" "${CMAKE_CURRENT_SOURCE_DIR}/src")
 if(WIN32 OR WIN64)
 	if("$MSVC_VERSION" VERSION_LESS "1900")
-		SET_TARGET_PROPERTIES("uiohook"  PROPERTIES COMPILE_FLAGS "-Dinline=__inline -D_CRT_SECURE_NO_WARNINGS -Dsnprintf=_snprintf")
+		SET_TARGET_PROPERTIES("uiohook"  PROPERTIES COMPILE_FLAGS "-Dinline=__inline -D_CRT_SECURE_NO_WARNINGS")
 	else()
 		SET_TARGET_PROPERTIES("uiohook"  PROPERTIES COMPILE_FLAGS "-Dinline=__inline -D_CRT_SECURE_NO_WARNINGS")
 	endif()
@@ -118,7 +114,7 @@ function (register_demo dname)
 	target_link_libraries("${dname}" "uiohook")
 	if(WIN32 OR WIN64)
 		if("$MSVC_VERSION" VERSION_LESS "1900")
-			SET_TARGET_PROPERTIES("${dname}"  PROPERTIES COMPILE_FLAGS "-Dinline=__inline -D_CRT_SECURE_NO_WARNINGS -Dsnprintf=_snprintf")
+			SET_TARGET_PROPERTIES("${dname}"  PROPERTIES COMPILE_FLAGS "-Dinline=__inline -D_CRT_SECURE_NO_WARNINGS")
 		else()
 			SET_TARGET_PROPERTIES("${dname}"  PROPERTIES COMPILE_FLAGS "-Dinline=__inline -D_CRT_SECURE_NO_WARNINGS")
 		endif()
