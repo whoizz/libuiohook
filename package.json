@@ -1,0 +1,27 @@
+{
+  "name": "libuiohook",
+  "version": "1.0.0",
+  "description": "libuiohook ==========",
+  "main": "index.js",
+  "directories": {
+    "man": "man",
+    "test": "test"
+  },
+  "scripts": {
+    "postinstall": "npm run compile",
+    "compile": "cmake-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whoizz/libuiohook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whoizz/libuiohook/issues"
+  },
+  "homepage": "https://github.com/whoizz/libuiohook#readme",
+  "devDependencies": {
+    "cmake-js": "^3.5.0"
+  }
+}
